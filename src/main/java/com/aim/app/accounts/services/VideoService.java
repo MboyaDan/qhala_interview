@@ -41,7 +41,7 @@ public class VideoService {
         boolean exists = videoRepository.existsById(id);
         if(!exists){
             throw new IllegalStateException(
-                    "Book with " + id +" does not exist"
+                    "Video of " + id +" does not exist"
             );
         }
         videoRepository.deleteById(id);
