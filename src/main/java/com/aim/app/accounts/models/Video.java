@@ -1,8 +1,18 @@
 package com.aim.app.accounts.models;
 
+import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
+@Entity
+@Table
 public class Video {
+    @Id
+    @GeneratedValue
     private int id;
     private String videoName;
     private Date releaseDate;
