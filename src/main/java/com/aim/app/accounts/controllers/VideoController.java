@@ -29,9 +29,22 @@ public class VideoController {
         return videoService.getVideos();
     }
 
-//    GET a video
     @GetMapping("/video/{id}")
     public Optional<Video> getVideo(@PathVariable int id){
         return  videoService.getVideo(id);
     }
+
+//    GET video by name
+    @GetMapping("/videoName/{video}")
+    public Optional<Video> getVideoByName(@PathVariable String video){
+        return videoService.getVideoByName(video);
+
+    }
+
+//    DELETE a video
+    @DeleteMapping("/delete/{id}")
+    public void deleteVideo(@PathVariable int id){
+        videoService.deleteVideo(id);
+    }
+
 }

@@ -25,8 +25,26 @@ public class VideoService {
         return  videoRepository.findAll();
     }
 
+
 //    Get a video
     public Optional<Video> getVideo(int id){
         return videoRepository.findById(id);
+    }
+
+//    GET a video by name
+    public Optional<Video> getVideoByName(String video){
+        return videoRepository.findVideoByName(video);
+    }
+
+//    DELETE video
+    public void deleteVideo(int id){
+        boolean exists = videoRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException(
+                    "Book with " + id +" does not exist"
+            );
+        }
+        videoRepository.deleteById(id);
+
     }
 }
