@@ -37,6 +37,7 @@ public class BookController {
         return bookService.getBook(id);
     }
 //    GET a book by name
+    @GetMapping("/bookName/{book}")
     public Optional<Book> getBookByName(@PathVariable String book){
         return bookService.getBookName(book);
     }
