@@ -18,7 +18,7 @@ public class VideoController {
         this.videoService = videoService;
     }
 //    Add video
-    @PostMapping("/addBook")
+    @PostMapping("/addVideo")
     public void addNewVideo(@RequestBody Video video){
         videoService.addNewVideo(video);
     }
