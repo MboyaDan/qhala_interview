@@ -15,6 +15,11 @@ public class VideoService {
         this.videoRepository = videoRepository;
     }
 
+//    Add video
+    public void addNewVideo(Video video){
+        videoRepository.save(video);
+    }
+
     //Get All Videos
     public List<Video>getVideos(){
         return  videoRepository.findAll();

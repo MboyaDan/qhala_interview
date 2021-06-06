@@ -3,10 +3,7 @@ package com.aim.app.accounts.controllers;
 import com.aim.app.accounts.models.Video;
 import com.aim.app.accounts.services.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +16,11 @@ public class VideoController {
     @Autowired
     public VideoController(VideoService videoService) {
         this.videoService = videoService;
+    }
+//    Add video
+    @PostMapping("/addBook")
+    public void addNewVideo(@RequestBody Video video){
+        videoService.addNewVideo(video);
     }
 
 //    Get all videos
