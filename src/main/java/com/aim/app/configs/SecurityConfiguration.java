@@ -23,12 +23,13 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder.userDetailsService(userDetailsService);
     }
 
-//    @Override
-//    protected void configure(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity.authorizeRequests()
-//                .antMatchers("/books").permitAll().and().formLogin();
-//
-//    }
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests()
+                .antMatchers("/api/v1/addBook").hasAnyRole("ADMIN")
+                .antMatchers("/api/v1/books","/api/v1/bookName/{book}","/api/v1/book/{id}").permitAll().and().formLogin();
+
+    }
 
     @Bean
     public PasswordEncoder getPasswordEncoder(){
