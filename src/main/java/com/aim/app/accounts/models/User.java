@@ -23,10 +23,6 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
 
-	public enum Role {
-		ROLE_USER
-	};
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -54,7 +50,7 @@ public class User {
 	private String phoneNumber;
 
 	@Column(name = "role")
-	private Role role;
+	private String roles;
 
 	public User() {
 		super();
@@ -62,7 +58,7 @@ public class User {
 
 	public User(Long id, @NotNull(message = "email is required") @NotEmpty(message = "email is required") String email,
 			String password, @Size(min = 1, max = 60) String firstName, @Size(min = 1, max = 60) String lastName,
-			@Size(min = 8, max = 20) String phoneNumber, Role role) {
+			@Size(min = 8, max = 20) String phoneNumber, String roles) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -70,7 +66,7 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
-		this.role = role;
+		this.roles = roles;
 	}
 
 	public Long getId() {
@@ -121,12 +117,11 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Role getRole() {
-		return role;
+	public String getRoles() {
+		return roles;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
-
 }
