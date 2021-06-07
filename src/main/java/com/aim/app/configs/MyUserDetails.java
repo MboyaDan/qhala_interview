@@ -1,36 +1,45 @@
 package com.aim.app.configs;
 
+import com.aim.app.accounts.models.User;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 public class MyUserDetails implements UserDetails {
 
-    public String userName;
+    private String email;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private List<GrantedAuthority>authorities;
 
-    public MyUserDetails(String userName){
-        this.userName = userName;
 
+
+
+    public MyUserDetails(User user) {
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.firstName=user.getFirstName();
+        this.lastName = user.getLastName();
+        this.phoneNumber=user.getPhoneNumber();
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
-    public MyUserDetails() {
+        return null;
     }
 
     @Override
     public String getPassword() {
-        return "pass";
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return userName;
+        return email;
     }
 
     @Override
