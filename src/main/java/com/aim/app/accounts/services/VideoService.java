@@ -3,10 +3,12 @@ package com.aim.app.accounts.services;
 import com.aim.app.accounts.models.Video;
 import com.aim.app.accounts.repositories.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class VideoService {
     private final VideoRepository videoRepository;
 

@@ -1,8 +1,16 @@
 package com.aim.app.accounts.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
+@Entity
+@Table
 public class Book {
+    @Id
+    @GeneratedValue
     private int id;
     private String bookName;
     private Date issueDate;
