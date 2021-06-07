@@ -38,18 +38,18 @@ public class BookService {
         return bookRepository.findBookByName(video);
     }
 
-//    DELETE video
-    public void deleteBook(int id){
-        boolean exists = bookRepository.existsById(id);
-        if(!exists){
-            throw new IllegalStateException(
-                    "Video of " + id +" does not exist"
-
-            );
-        }
-        bookRepository.deleteById(id);
-
-    }
+////    DELETE video
+//    public void deleteBook(int id){
+//        boolean exists = bookRepository.existsById(id);
+//        if(!exists){
+//            throw new IllegalStateException(
+//                    "Video of " + id +" does not exist"
+//
+//            );
+//        }
+//        bookRepository.deleteById(id);
+//
+//    }
 
 
 }
