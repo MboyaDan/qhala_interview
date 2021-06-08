@@ -23,22 +23,22 @@ public class BookService {
         bookRepository.save(book);
     }
 
-//    GET all videos
+//    GET all books
     public List<Book> getBooks(){
         return bookRepository.findAll();
     }
 
-//    GET video by id
+//    GET book by id
     public Optional<Book>getBook(int id){
         return bookRepository.findById(id);
     }
 
-//    GET video by videoName
+//    GET book by bookName
     public Optional<Book>getBookName(String video){
         return bookRepository.findBookByName(video);
     }
 
-////    DELETE video
+////    DELETE book
 //    public void deleteBook(int id){
 //        boolean exists = bookRepository.existsById(id);
 //        if(!exists){

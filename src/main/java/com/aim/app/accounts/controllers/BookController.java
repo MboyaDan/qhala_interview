@@ -68,7 +68,7 @@ public class BookController {
 //
 //    }
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    @RequestMapping(path = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticateRequest myUserDetails) throws Exception{
 
 

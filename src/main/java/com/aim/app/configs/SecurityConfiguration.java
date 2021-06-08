@@ -7,9 +7,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 @EnableWebSecurity
@@ -18,8 +20,12 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsService userDetailsService;
 
+    @Autowired
+    private JwtFilter jwtFilter;
+
     @Override
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+
 
         authenticationManagerBuilder.userDetailsService(userDetailsService);
     }
@@ -30,13 +36,14 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/authenticate").permitAll()
-                .antMatchers("/addBook","/addVideo").hasAnyRole("ADMIN")
-                .antMatchers("/books","/bookName/{book}","/book/{id}","/videos","/api/video/{id}","/api/v1/videoName/{video}")
-                .permitAll()
+                .antMatchers("/authenticate").permitAll().anyRequest().authenticated()
+//                .antMatchers("/addVideo").hasAnyRole()
+//                .antMatchers("/addBook","/books","/bookName/{book}","/book/{id}","/videos","/video/{id}","/videoName/{video}")
+//                .permitAll()
                 .and()
-                .formLogin();
-
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().formLogin();
+        httpSecurity.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
