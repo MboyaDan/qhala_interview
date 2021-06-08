@@ -19,12 +19,12 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return "qhala@2021";
+        return "pass";
     }
 
     @Override
     public String getUsername() {
-        return "qhala_user";
+        return "jay";
     }
 
     @Override

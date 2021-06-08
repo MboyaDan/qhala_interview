@@ -36,13 +36,13 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/authenticate").permitAll()
-                .antMatchers("/addVideo").hasAnyRole()
-                .antMatchers("/addBook","/books","/bookName/{book}","/book/{id}","/videos","/video/{id}","/videoName/{video}")
-                .permitAll()
+                .antMatchers("/authenticate").permitAll().anyRequest().authenticated()
+//                .antMatchers("/addVideo").hasAnyRole()
+//                .antMatchers("/addBook","/books","/bookName/{book}","/book/{id}","/videos","/video/{id}","/videoName/{video}")
+//                .permitAll()
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().formLogin();
         httpSecurity.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
