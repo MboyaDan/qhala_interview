@@ -5,8 +5,18 @@ Starter template for maven projects
 * Book routes
 * video routes
 
+### How to access protected routes
+## NB:
+##### All routes are protected
+* Get an access token [Request-Type - POST, Content-Type-application/json]
+  {localhost:1709}/authenticate
+
+## The username name and password have been hardcoded
+* ### username: jay
+* ### password: pass
+
 ### Book routes
-#### {serverName}/
+#### {localhost:1709}/
 * addBook (non-protected route)
 CREATE a book
 
@@ -26,18 +36,18 @@ UPDATE a book
 DELETE a book
 
 ### Video routes
-#### {serverName}/
-* addBook (protected route)
+#### {localhost:1709}/
+* addVideo 
   CREATE a video
 
 * videos
   GET all books, returns JSONData
 
 * video/{id}
-  GET book with a given id
+  GET video with a given id
 
 * videoName/{video}
-  GET book with unique name
+  GET video with unique name
 
 * update/video/{id}(protected route)
   UPDATE a video
@@ -46,6 +56,3 @@ DELETE a book
   DELETE a video
   
 
-### How to access protected routes
-* Get an access token
-{localhost:1709}/authenticate

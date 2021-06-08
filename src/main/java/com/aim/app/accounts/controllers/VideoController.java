@@ -27,8 +27,8 @@ public class VideoController {
     @GetMapping("/videos")
     public List<Video>getVideos(){
 
-//        return videoService.getVideos();
-        throw new ApiResponseException("Oops no videos");
+        return videoService.getVideos();
+//        throw new ApiResponseException("Oops no videos");
     }
 
     @GetMapping("/video/{id}")
