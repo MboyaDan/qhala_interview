@@ -2,8 +2,9 @@ package com.aim.app.accounts.controllers;
 
 import com.aim.app.accounts.models.Book;
 import com.aim.app.accounts.services.BookService;
-import com.aim.app.configs.MyUserDetails;
+//import com.aim.app.configs.MyUserDetails;
 import com.aim.app.configs.MyUserDetailsService;
+import com.aim.app.configs.util.AuthenticateRequest;
 import com.aim.app.configs.util.AuthenticationResponse;
 import com.aim.app.configs.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,17 +69,17 @@ public class BookController {
 //    }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody MyUserDetails myUserDetails) throws Exception{
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticateRequest myUserDetails) throws Exception{
 
 
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(myUserDetails.getUsername(), myUserDetails.getPassword())
+                    new UsernamePasswordAuthenticationToken(myUserDetails.getUserName(), myUserDetails.getPassword())
             );
         }catch (BadCredentialsException e){
             throw new Exception("Incorrect username or password ", e);
         }
-        final UserDetails userDetails = myUserDetailsService.loadUserByUsername(myUserDetails.getUsername());
+        final UserDetails userDetails = myUserDetailsService.loadUserByUsername(myUserDetails.getUserName());
 
         final String jwt = jwtUtil.generateToken(userDetails);
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
