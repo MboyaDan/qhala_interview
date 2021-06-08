@@ -14,18 +14,20 @@ public class Book {
     private int id;
     private String bookName;
     private Date issueDate;
-    private String userName;
+    private String author;
+    private String reviews;
     private String isbn;
 
     public Book() {
         super();
     }
 
-    public Book(int id, String bookName, Date issueDate, String userName, String isbn) {
+    public Book(int id, String bookName, Date issueDate, String author,String reviews, String isbn) {
         this.id = id;
         this.bookName = bookName;
         this.issueDate = issueDate;
-        this.userName = userName;
+        this.author = author;
+        this.reviews = reviews;
         this.isbn = isbn;
     }
 
@@ -53,12 +55,20 @@ public class Book {
         this.issueDate = issueDate;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(String reviews) {
+        this.reviews = reviews;
     }
 
     public String getIsbn() {
@@ -75,7 +85,8 @@ public class Book {
                 "id=" + id +
                 ", bookName='" + bookName + '\'' +
                 ", issueDate=" + issueDate +
-                ", userName='" + userName + '\'' +
+                ", author='" + author + '\'' +
+                ", reviews='" + reviews + '\'' +
                 ", isbn='" + isbn + '\'' +
                 '}';
     }

@@ -21,6 +21,7 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 
+
         authenticationManagerBuilder.userDetailsService(userDetailsService);
     }
 
@@ -31,8 +32,8 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/authenticate").permitAll()
-                .antMatchers("/books","/addVideo").hasAnyRole()
-                .antMatchers("/bookName/{book}","/book/{id}","/videos","/api/video/{id}","/api/v1/videoName/{video}")
+                .antMatchers("/addVideo").hasAnyRole()
+                .antMatchers("/addBook","/books","/bookName/{book}","/book/{id}","/videos","/video/{id}","/videoName/{video}")
                 .permitAll()
                 .and()
                 .formLogin();
