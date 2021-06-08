@@ -31,8 +31,8 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/authenticate").permitAll()
-                .antMatchers("/addBook","/addVideo").hasAnyRole("ADMIN")
-                .antMatchers("/books","/bookName/{book}","/book/{id}","/videos","/api/video/{id}","/api/v1/videoName/{video}")
+                .antMatchers("/books","/addVideo").hasAnyRole()
+                .antMatchers("/bookName/{book}","/book/{id}","/videos","/api/video/{id}","/api/v1/videoName/{video}")
                 .permitAll()
                 .and()
                 .formLogin();

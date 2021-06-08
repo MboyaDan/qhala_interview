@@ -1,5 +1,6 @@
 package com.aim.app.accounts.controllers;
 
+import com.aim.app.accounts.exceptions.ApiResponseException;
 import com.aim.app.accounts.models.Video;
 import com.aim.app.accounts.services.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,9 @@ public class VideoController {
 //    Get all videos
     @GetMapping("/videos")
     public List<Video>getVideos(){
-        return videoService.getVideos();
+
+//        return videoService.getVideos();
+        throw new ApiResponseException("Oops no videos");
     }
 
     @GetMapping("/video/{id}")
