@@ -2,15 +2,33 @@ package com.aim.app.accounts.controllers;
 
 import com.aim.app.accounts.models.Book;
 import com.aim.app.accounts.services.BookService;
+import com.aim.app.configs.MyUserDetails;
+import com.aim.app.configs.MyUserDetailsService;
+import com.aim.app.configs.util.AuthenticationResponse;
+import com.aim.app.configs.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/api/v1")
 public class BookController {
+
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    MyUserDetailsService myUserDetailsService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     private final BookService bookService;
 
@@ -48,5 +66,23 @@ public class BookController {
 //        bookService.deleteBook(id);
 //
 //    }
+
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody MyUserDetails myUserDetails) throws Exception{
+
+
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(myUserDetails.getUsername(), myUserDetails.getPassword())
+            );
+        }catch (BadCredentialsException e){
+            throw new Exception("Incorrect username or password ", e);
+        }
+        final UserDetails userDetails = myUserDetailsService.loadUserByUsername(myUserDetails.getUsername());
+
+        final String jwt = jwtUtil.generateToken(userDetails);
+        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+
+    }
 
 }
